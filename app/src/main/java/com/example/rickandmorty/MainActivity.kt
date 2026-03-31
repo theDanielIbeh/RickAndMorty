@@ -35,6 +35,7 @@ import com.example.rickandmorty.screens.allEpisodes.AllEpisodesScreen
 import com.example.rickandmorty.screens.characterDetails.CharacterDetailsScreen
 import com.example.rickandmorty.screens.characterEpisodes.CharacterEpisodesScreen
 import com.example.rickandmorty.screens.home.HomeScreen
+import com.example.rickandmorty.screens.search.SearchScreen
 import com.example.rickandmorty.ui.theme.RickAndMortyTheme
 
 sealed class NavDestination(val title: String, val route: String, val icon: ImageVector) {
@@ -111,12 +112,20 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(innerPadding)
                             )
                         }
+                        composable("search")
+                        {
+                            SearchScreen(
+                                onCharacterClicked = {
+                                    navController.navigate("characterDetails/${it}")
+                                },
+                            )
+                        }
                         composable(
                             "characterDetails/{characterId}",
                             arguments = listOf(navArgument("characterId") {
                                 type = NavType.IntType
                             })
-                        ) {backStackEntry ->
+                        ) { backStackEntry ->
                             val characterId = backStackEntry.arguments?.getInt("characterId") ?: -1
                             CharacterDetailsScreen(
                                 characterId = characterId,

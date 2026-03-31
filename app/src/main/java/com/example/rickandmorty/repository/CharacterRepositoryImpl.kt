@@ -21,6 +21,10 @@ class CharacterRepositoryImpl(
         return remoteDataSource.getCharacterByPage(page, params)
     }
 
+    override suspend fun fetchAllCharactersByName(searchQuery: String): ApiOperation<List<Character>> {
+        return remoteDataSource.searchAllCharactersByName(searchQuery)
+    }
+
     override suspend fun getEpisode(episodeId: Int): ApiOperation<Episode>  {
         return remoteDataSource.getEpisode(episodeId)
     }

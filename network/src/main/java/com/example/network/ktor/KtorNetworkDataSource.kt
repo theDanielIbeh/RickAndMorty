@@ -75,6 +75,39 @@ class KtorNetworkDataSource : NetworkDataSource {
         }
     }
 
+    override suspend fun searchAllCharactersByName(searchQuery: String): ApiOperation<List<Character>> {
+        val data = mutableListOf<Character>()
+        var exception: Exception? = null
+
+        getCharacterByPage(
+            pageNumber = 1,
+            queryParams = mapOf("name" to searchQuery)
+        ).onSuccess { firstPage ->
+            val totalPageCount = firstPage.info.pages
+            data.addAll(firstPage.characters)
+
+            repeat(totalPageCount - 1) { index ->
+                getCharacterByPage(
+                    pageNumber = index + 2,
+                    queryParams = mapOf("name" to searchQuery)
+                ).onSuccess { nextPage ->
+                    data.addAll(nextPage.characters)
+                }.onFailure { error ->
+                    exception = error
+                }
+
+                if (exception != null) {
+                    return@onSuccess
+                }
+            }
+        }.onFailure {
+            exception = it
+        }
+
+        return exception?.let { ApiOperation.Failure(it) } ?: ApiOperation.Success(data)
+    }
+
+
     override suspend fun getEpisode(episodeId: Int): ApiOperation<Episode> {
         return safeApiCall {
             client.get("episode/$episodeId")

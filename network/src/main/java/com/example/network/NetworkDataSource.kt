@@ -11,6 +11,7 @@ interface NetworkDataSource {
         pageNumber: Int,
         queryParams: Map<String, String>
     ): ApiOperation<CharacterPage>
+    suspend fun searchAllCharactersByName(searchQuery: String): ApiOperation<List<Character>>
     suspend fun getEpisode(episodeId: Int): ApiOperation<Episode>
     suspend fun getEpisodes(episodeIds: List<Int>): ApiOperation<List<Episode>>
     suspend fun getEpisodesByPage(pageIndex: Int): ApiOperation<EpisodePage>
