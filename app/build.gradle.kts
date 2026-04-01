@@ -1,6 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.rickandmorty.android.application)
+    alias(libs.plugins.rickandmorty.android.application.compose)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.rickandmorty.koin)
 }
 
 android {
@@ -54,18 +56,6 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
-
-    // Koin
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.android)
-    implementation(libs.koin.android.compat)
-    implementation(libs.koin.compose)
-    implementation(libs.koin.compose.viewmodel)
-    implementation(libs.koin.compose.viewmodel.navigation)
-    implementation(libs.koin.core.coroutines)
-    implementation(libs.koin.androidx.workmanager)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.androidx.compose.navigation)
 
     implementation(libs.androidx.navigation.compose)
 

@@ -1,4 +1,4 @@
-package com.example.rickandmorty.di
+package com.example.network.di
 
 import com.example.network.NetworkDataSource
 import com.example.network.ktor.KtorNetworkDataSource

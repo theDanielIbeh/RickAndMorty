@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.rickandmorty.android.library)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.rickandmorty.koin)
 }
 
 android {
