@@ -1,6 +1,9 @@
 plugins {
     `kotlin-dsl`
 }
+
+group = "com.example.rickandmorty.buildlogic"
+
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
