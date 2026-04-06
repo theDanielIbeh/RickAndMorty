@@ -23,6 +23,8 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "RickAndMorty"
 include(":app")
 include(":network")
