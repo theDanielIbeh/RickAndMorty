@@ -20,6 +20,7 @@ kotlin = "2.2.10"
 composeBom = "2024.09.00"
 appcompat = "1.7.1"
 material = "1.10.0"
+paging = "3.4.2"
 navigationCompose = "2.9.7"
 jetbrainsKotlinJvm = "2.2.10"
 
@@ -69,6 +70,10 @@ ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
+# Paging
+androidx-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
+
 # Dependencies of the included build-logic
 android-gradleApiPlugin = { group = "com.android.tools.build", name = "gradle-api", version.ref = "agp" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
@@ -78,6 +83,7 @@ firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "per
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+paging-gradlePlugin = { group = "androidx.paging", name = "paging-gradle-plugin", version.ref = "paging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -93,6 +99,7 @@ rickandmorty-android-application-compose = { id = "rickandmorty.android.applicat
 rickandmorty-android-library = { id = "rickandmorty.android.library" }
 rickandmorty-android-library-compose = { id = "rickandmorty.android.library.compose" }
 rickandmorty-koin = { id = "rickandmorty.koin" }
+rickandmorty-paging = { id = "rickandmorty.paging" }
 
 
 [bundles]

@@ -44,5 +44,9 @@ gradlePlugin {
             id = libs.plugins.rickandmorty.koin.get().pluginId
             implementationClass = "KoinConventionPlugin"
         }
+        register("androidPaging") {
+            id = libs.plugins.rickandmorty.paging.get().pluginId
+            implementationClass = "PagingConventionPlugin"
+        }
     }
 }

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.rickandmorty.android.application)
     alias(libs.plugins.rickandmorty.android.application.compose)
     alias(libs.plugins.rickandmorty.koin)
+    alias(libs.plugins.rickandmorty.paging)
 }
 
 android {
