@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.rickandmorty.android.application)
     alias(libs.plugins.rickandmorty.android.application.compose)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.rickandmorty.koin)
 }
 
