@@ -1,10 +1,15 @@
 package com.example.rickandmorty.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.network.ApiOperation
 import com.example.network.NetworkDataSource
+import com.example.network.data.CharacterPagingSource
 import com.example.network.model.domain.Character
 import com.example.network.model.domain.CharacterPage
 import com.example.network.model.domain.Episode
+import kotlinx.coroutines.flow.Flow
 
 class CharacterRepositoryImpl(
     private val remoteDataSource: NetworkDataSource
@@ -17,19 +22,35 @@ class CharacterRepositoryImpl(
         return remoteDataSource.getCharacter(id)
     }
 
-    override suspend fun fetchCharacterPage(page: Int, params: Map<String, String>): ApiOperation<CharacterPage> {
+    override suspend fun fetchCharacterPage(
+        page: Int,
+        params: Map<String, String>
+    ): ApiOperation<CharacterPage> {
         return remoteDataSource.getCharacterByPage(page, params)
+    }
+
+    override fun getCharactersByName(query: Map<String, String>):
+        Flow<PagingData<Character>> {
+        return Pager(
+            config = PagingConfig(pageSize = 20, enablePlaceholders = false),
+            pagingSourceFactory = {
+                CharacterPagingSource(
+                    remoteDataSource,
+                    queryParams = query
+                )
+            }
+        ).flow
     }
 
     override suspend fun fetchAllCharactersByName(searchQuery: String): ApiOperation<List<Character>> {
         return remoteDataSource.searchAllCharactersByName(searchQuery)
     }
 
-    override suspend fun getEpisode(episodeId: Int): ApiOperation<Episode>  {
+    override suspend fun getEpisode(episodeId: Int): ApiOperation<Episode> {
         return remoteDataSource.getEpisode(episodeId)
     }
 
     override suspend fun getEpisodes(episodeIds: List<Int>): ApiOperation<List<Episode>> {
         return remoteDataSource.getEpisodes(episodeIds)
-        }
     }
+}
