@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.example.network.ApiOperation
 import com.example.network.NetworkDataSource
 import com.example.network.data.CharacterPagingSource
+import com.example.network.data.NetworkPagingSource
 import com.example.network.model.domain.Character
 import com.example.network.model.domain.CharacterPage
 import com.example.network.model.domain.Episode
@@ -38,6 +39,11 @@ class CharacterRepositoryImpl(
                     remoteDataSource,
                     queryParams = query
                 )
+//                NetworkPagingSource(
+//                    fetchPage = { page -> remoteDataSource.getCharacterByPage(page, query) },
+//                    getItems = { it.characters },
+//                    getNextUrl = { it.info.next }
+//                )
             }
         ).flow
     }
