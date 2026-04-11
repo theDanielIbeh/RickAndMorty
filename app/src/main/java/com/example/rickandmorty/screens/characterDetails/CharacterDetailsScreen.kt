@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.network.model.domain.Character
+import com.example.rickandmorty.core.network.model.domain.Character
 import com.example.rickandmorty.components.character.CharacterDetailsNamePlateComponent
 import com.example.rickandmorty.components.common.CharacterImage
 import com.example.rickandmorty.components.common.DataPoint

@@ -40,6 +40,10 @@ gradlePlugin {
             id = libs.plugins.rickandmorty.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("androidFeature") {
+            id = libs.plugins.rickandmorty.android.feature.get().pluginId
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("androidKoin") {
             id = libs.plugins.rickandmorty.koin.get().pluginId
             implementationClass = "KoinConventionPlugin"

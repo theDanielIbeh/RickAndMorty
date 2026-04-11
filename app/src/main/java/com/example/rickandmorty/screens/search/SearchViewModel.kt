@@ -4,9 +4,9 @@ import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.network.model.domain.Character
-import com.example.network.model.domain.CharacterStatus
-import com.example.rickandmorty.repository.CharacterRepository
+import com.example.rickandmorty.core.network.model.domain.Character
+import com.example.rickandmorty.core.network.model.domain.CharacterStatus
+import com.example.rickandmorty.core.data.repository.CharacterRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow

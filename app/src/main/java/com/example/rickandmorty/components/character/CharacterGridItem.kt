@@ -18,9 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.network.model.domain.Character
-import com.example.network.model.domain.CharacterGender
-import com.example.network.model.domain.CharacterStatus
+import com.example.rickandmorty.core.network.model.domain.Character
+import com.example.rickandmorty.core.network.model.domain.CharacterGender
+import com.example.rickandmorty.core.network.model.domain.CharacterStatus
 import com.example.rickandmorty.components.common.CharacterImage
 
 @Composable

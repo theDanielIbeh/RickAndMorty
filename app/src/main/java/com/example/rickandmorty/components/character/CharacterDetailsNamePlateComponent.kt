@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.network.model.domain.CharacterStatus
+import com.example.rickandmorty.core.network.model.domain.CharacterStatus
 import com.example.rickandmorty.components.common.CharacterNameComponent
 
 @Composable

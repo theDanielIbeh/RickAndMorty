@@ -13,8 +13,8 @@ import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.network.model.domain.CharacterStatus
-import com.example.network.model.domain.asColor
+import com.example.rickandmorty.core.network.model.domain.CharacterStatus
+import com.example.rickandmorty.core.network.model.domain.asColor
 import com.example.rickandmorty.ui.theme.RickAndMortyTheme
 
 @Composable

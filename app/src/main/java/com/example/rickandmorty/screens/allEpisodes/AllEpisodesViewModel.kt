@@ -2,7 +2,7 @@ package com.example.rickandmorty.screens.allEpisodes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.repository.EpisodeRepository
+import com.example.rickandmorty.core.data.repository.EpisodeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

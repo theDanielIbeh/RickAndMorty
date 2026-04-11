@@ -41,7 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.network.model.domain.CharacterStatus
+import com.example.rickandmorty.core.network.model.domain.CharacterStatus
 import com.example.rickandmorty.components.character.CharacterListItem
 import com.example.rickandmorty.components.common.DataPoint
 import com.example.rickandmorty.components.common.SimpleToolbar

@@ -27,4 +27,6 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "RickAndMorty"
 include(":app")
-include(":network")
+include(":core:network")
+include(":core:data")
+include(":feature")

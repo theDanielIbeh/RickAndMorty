@@ -1,6 +1,7 @@
 package com.example.rickandmorty.di
 
-import com.example.network.di.networkModule
+import com.example.rickandmorty.core.data.di.repositoryModule
+import com.example.rickandmorty.core.network.di.networkModule
 
 val appModule = listOf(
     viewModelModule,

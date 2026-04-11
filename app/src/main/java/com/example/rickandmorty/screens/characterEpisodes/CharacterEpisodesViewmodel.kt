@@ -2,7 +2,7 @@ package com.example.rickandmorty.screens.characterEpisodes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.repository.CharacterRepository
+import com.example.rickandmorty.core.data.repository.CharacterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

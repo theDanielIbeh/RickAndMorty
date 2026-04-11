@@ -20,14 +20,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.network.model.domain.Character
-import com.example.network.model.domain.Episode
+import com.example.rickandmorty.core.network.model.domain.Character
+import com.example.rickandmorty.core.network.model.domain.Episode
 import com.example.rickandmorty.components.common.CharacterImage
 import com.example.rickandmorty.components.common.CharacterNameComponent
 import com.example.rickandmorty.components.common.DataPoint

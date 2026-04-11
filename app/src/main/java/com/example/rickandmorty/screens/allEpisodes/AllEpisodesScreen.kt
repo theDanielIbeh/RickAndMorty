@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.network.model.domain.Episode
+import com.example.rickandmorty.core.network.model.domain.Episode
 import com.example.rickandmorty.components.common.LoadingState
 import com.example.rickandmorty.components.common.SimpleToolbar
 import com.example.rickandmorty.components.episode.EpisodeRowComponent

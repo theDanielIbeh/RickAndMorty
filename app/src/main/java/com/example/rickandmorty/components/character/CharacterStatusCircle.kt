@@ -14,8 +14,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.network.model.domain.CharacterStatus
-import com.example.network.model.domain.asColor
+import com.example.rickandmorty.core.network.model.domain.CharacterStatus
+import com.example.rickandmorty.core.network.model.domain.asColor
 
 @Composable
 fun CharacterStatusCircle(status: CharacterStatus, modifier: Modifier = Modifier) {

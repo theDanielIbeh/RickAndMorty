@@ -42,7 +42,8 @@ android {
 }
 
 dependencies {
-    implementation(projects.network)
+    implementation(projects.core.network)
+    implementation(projects.core.data)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

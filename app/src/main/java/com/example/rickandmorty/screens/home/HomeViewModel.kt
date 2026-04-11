@@ -3,7 +3,7 @@ package com.example.rickandmorty.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.example.rickandmorty.repository.CharacterRepository
+import com.example.rickandmorty.core.data.repository.CharacterRepository
 
 class HomeViewModel(
     characterRepository: CharacterRepository
