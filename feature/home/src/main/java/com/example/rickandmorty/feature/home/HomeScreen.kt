@@ -1,4 +1,4 @@
-package com.example.rickandmorty.feature.home.home
+package com.example.rickandmorty.feature.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

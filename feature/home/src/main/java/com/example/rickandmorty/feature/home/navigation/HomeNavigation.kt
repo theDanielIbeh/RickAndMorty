@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.rickandmorty.feature.home.home.HomeScreen
+import com.example.rickandmorty.feature.home.HomeScreen
 import kotlinx.serialization.Serializable
 
 @Serializable data object HomeRoute

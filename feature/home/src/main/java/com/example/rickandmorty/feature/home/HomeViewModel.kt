@@ -1,4 +1,4 @@
-package com.example.rickandmorty.feature.home.home
+package com.example.rickandmorty.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
