@@ -25,8 +25,8 @@ import org.gradle.kotlin.dsl.dependencies
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "nowinandroid.android.library")
-            apply(plugin = "nowinandroid.hilt")
+            apply(plugin = "rickandmorty.android.library")
+            apply(plugin = "rickandmorty.koin")
             apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
 
             extensions.configure<LibraryExtension> {
@@ -35,7 +35,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
             dependencies {
 //                "implementation"(project(":core:ui"))
-//                "implementation"(project(":core:designsystem"))
+                "implementation"(project(":core:designsystem"))
 
                 "implementation"(libs.findLibrary("koin.androidx.compose.navigation").get())
                 "implementation"(libs.findLibrary("androidx.lifecycle.runtime.ktx").get())

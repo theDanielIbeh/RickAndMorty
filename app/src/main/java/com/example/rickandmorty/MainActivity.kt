@@ -25,25 +25,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.util.trace
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.example.rickandmorty.screens.allEpisodes.AllEpisodesScreen
-import com.example.rickandmorty.screens.characterDetails.CharacterDetailsScreen
-import com.example.rickandmorty.screens.characterEpisodes.CharacterEpisodesScreen
-import com.example.rickandmorty.screens.home.HomeScreen
-import com.example.rickandmorty.screens.search.SearchScreen
+import androidx.navigation.navOptions
+import com.example.rickandmorty.feature.characterdetails.navigation.characterDetailsScreen
+import com.example.rickandmorty.feature.characterdetails.navigation.navigateToCharacterDetails
+import com.example.rickandmorty.feature.characterepisodes.navigation.characterEpisodesScreen
+import com.example.rickandmorty.feature.characterepisodes.navigation.navigateToCharacterEpisodes
+import com.example.rickandmorty.feature.episodes.navigation.EpisodesRoute
+import com.example.rickandmorty.feature.episodes.navigation.episodes
+import com.example.rickandmorty.feature.episodes.navigation.navigateToEpisodes
+import com.example.rickandmorty.feature.home.navigation.HomeBaseRoute
+import com.example.rickandmorty.feature.home.navigation.HomeRoute
+import com.example.rickandmorty.feature.home.navigation.homeSection
+import com.example.rickandmorty.feature.home.navigation.navigateToHome
+import com.example.rickandmorty.feature.search.navigation.SearchRoute
+import com.example.rickandmorty.feature.search.navigation.navigateToSearch
+import com.example.rickandmorty.feature.search.navigation.search
 import com.example.rickandmorty.ui.theme.RickAndMortyTheme
+import kotlin.reflect.KClass
 
-sealed class NavDestination(val title: String, val route: String, val icon: ImageVector) {
-    object Home : NavDestination(title = "Home", route = "home", icon = Icons.Filled.Home)
+sealed class NavDestination(val title: String, val route: KClass<*>, val icon: ImageVector) {
+    object Home : NavDestination(title = "Home", route = HomeRoute::class, icon = Icons.Filled.Home)
     object Episodes :
-        NavDestination(title = "Episodes", route = "episodes", icon = Icons.Filled.PlayArrow)
+        NavDestination(
+            title = "Episodes",
+            route = EpisodesRoute::class,
+            icon = Icons.Filled.PlayArrow
+        )
 
-    object Search : NavDestination(title = "Search", route = "search", icon = Icons.Filled.Search)
+    object Search :
+        NavDestination(title = "Search", route = SearchRoute::class, icon = Icons.Filled.Search)
 }
 
 class MainActivity : ComponentActivity() {
@@ -71,19 +85,35 @@ class MainActivity : ComponentActivity() {
                                     label = { Text(screen.title) },
                                     selected = index == selectedIndex,
                                     onClick = {
-                                        selectedIndex = index
-                                        navController.navigate(screen.route) {
-                                            // Pop up to the start destination of the graph to
-                                            // avoid building up a large stack of destinations
-                                            // on the back stack as users select items
-                                            popUpTo(navController.graph.findStartDestination().id) {
-                                                saveState = true
+                                        trace("Navigation: ${items[index]}") {
+                                            val navigationOptions = navOptions {
+                                                selectedIndex = index
+                                                // Pop up to the start destination of the graph to
+                                                // avoid building up a large stack of destinations
+                                                // on the back stack as users select items
+                                                popUpTo(navController.graph.findStartDestination().id) {
+                                                    saveState = true
+                                                }
+                                                // Avoid multiple copies of the same destination when
+                                                // reselecting the same item
+                                                launchSingleTop = true
+                                                // Restore state when reselecting a previously selected item
+                                                restoreState = true
                                             }
-                                            // Avoid multiple copies of the same destination when
-                                            // reselecting the same item
-                                            launchSingleTop = true
-                                            // Restore state when reselecting a previously selected item
-                                            restoreState = true
+
+                                            when (items[index]) {
+                                                NavDestination.Home -> navController.navigateToHome(
+                                                    navigationOptions
+                                                )
+
+                                                NavDestination.Episodes -> navController.navigateToEpisodes(
+                                                    navigationOptions
+                                                )
+
+                                                NavDestination.Search -> navController.navigateToSearch(
+                                                    navigationOptions
+                                                )
+                                            }
                                         }
                                     },
                                     colors = NavigationBarItemDefaults.colors(
@@ -99,54 +129,23 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = "home"
+                        startDestination = HomeBaseRoute,
+                        modifier = Modifier.padding(innerPadding)
                     ) {
-                        composable("home") {
-                            HomeScreen(
-                                onCharacterSelected = { navController.navigate("characterDetails/${it}") },
-                                modifier = Modifier.padding(innerPadding)
-                            )
-                        }
-                        composable("episodes") {
-                            AllEpisodesScreen(
-                                modifier = Modifier.padding(innerPadding)
-                            )
-                        }
-                        composable("search")
-                        {
-                            SearchScreen(
-                                onCharacterClicked = {
-                                    navController.navigate("characterDetails/${it}")
-                                },
-                            )
-                        }
-                        composable(
-                            "characterDetails/{characterId}",
-                            arguments = listOf(navArgument("characterId") {
-                                type = NavType.IntType
-                            })
-                        ) { backStackEntry ->
-                            val characterId = backStackEntry.arguments?.getInt("characterId") ?: -1
-                            CharacterDetailsScreen(
-                                characterId = characterId,
-                                onBackClicked = navController::popBackStack,
-                                onEpisodeClicked = { navController.navigate("characterEpisodes/${characterId}") },
-                                modifier = Modifier.padding(innerPadding)
-                            )
-                        }
-                        composable(
-                            "characterEpisodes/{characterId}",
-                            arguments = listOf(navArgument("characterId") {
-                                type = NavType.IntType
-                            })
-                        ) {
-                            val characterId = it.arguments?.getInt("characterId") ?: -1
-                            CharacterEpisodesScreen(
-                                characterId = characterId,
-                                onBackClicked = navController::popBackStack,
-                                modifier = Modifier.padding(innerPadding)
-                            )
-                        }
+                        homeSection(
+                            onCharacterSelected = navController::navigateToCharacterDetails
+                        )
+                        episodes()
+                        search(
+                            onCharacterClicked = navController::navigateToCharacterDetails
+                        )
+                        characterDetailsScreen(
+                            onEpisodeClicked = navController::navigateToCharacterEpisodes,
+                            onBackClicked = navController::popBackStack
+                        )
+                        characterEpisodesScreen(
+                            onBackClicked = navController::popBackStack
+                        )
                     }
                 }
             }

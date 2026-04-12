@@ -1,0 +1,13 @@
+package com.example.rickandmorty.feature.home.home
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import com.example.rickandmorty.core.data.repository.CharacterRepository
+
+class HomeViewModel(
+    characterRepository: CharacterRepository
+) : ViewModel() {
+    val characters = characterRepository.getCharactersByName()
+        .cachedIn(viewModelScope)
+}

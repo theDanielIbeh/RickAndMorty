@@ -42,8 +42,15 @@ android {
 }
 
 dependencies {
+    implementation(projects.feature.home)
+    implementation(projects.feature.characterdetails)
+    implementation(projects.feature.characterepisodes)
+    implementation(projects.feature.episodes)
+    implementation(projects.feature.search)
     implementation(projects.core.network)
     implementation(projects.core.data)
+    implementation(projects.core.designsystem)
+    implementation(projects.core.ui)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
