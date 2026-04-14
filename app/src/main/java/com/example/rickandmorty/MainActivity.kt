@@ -37,9 +37,8 @@ import com.example.rickandmorty.feature.characterepisodes.navigation.navigateToC
 import com.example.rickandmorty.feature.episodes.navigation.EpisodesRoute
 import com.example.rickandmorty.feature.episodes.navigation.episodes
 import com.example.rickandmorty.feature.episodes.navigation.navigateToEpisodes
-import com.example.rickandmorty.feature.home.navigation.HomeBaseRoute
 import com.example.rickandmorty.feature.home.navigation.HomeRoute
-import com.example.rickandmorty.feature.home.navigation.homeSection
+import com.example.rickandmorty.feature.home.navigation.homeScreen
 import com.example.rickandmorty.feature.home.navigation.navigateToHome
 import com.example.rickandmorty.feature.search.navigation.SearchRoute
 import com.example.rickandmorty.feature.search.navigation.navigateToSearch
@@ -129,10 +128,10 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = HomeBaseRoute,
+                        startDestination = HomeRoute,
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        homeSection(
+                        homeScreen(
                             onCharacterSelected = navController::navigateToCharacterDetails
                         )
                         episodes()

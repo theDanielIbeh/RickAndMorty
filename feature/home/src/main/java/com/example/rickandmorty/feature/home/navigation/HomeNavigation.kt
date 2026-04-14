@@ -4,23 +4,21 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.example.rickandmorty.feature.home.HomeScreen
 import kotlinx.serialization.Serializable
 
-@Serializable data object HomeRoute
-@Serializable data object HomeBaseRoute
+@Serializable
+data object HomeRoute
 
-fun NavController.navigateToHome(navOptions: NavOptions? = null)  = navigate(route =
-    HomeRoute, navOptions = navOptions
+fun NavController.navigateToHome(navOptions: NavOptions? = null) = navigate(
+    route =
+        HomeRoute, navOptions = navOptions
 )
 
-fun NavGraphBuilder.homeSection(
+fun NavGraphBuilder.homeScreen(
     onCharacterSelected: (Int) -> Unit
 ) {
-    navigation<HomeBaseRoute>(startDestination = HomeRoute) {
-        composable<HomeRoute> {
-            HomeScreen(onCharacterSelected = onCharacterSelected)
-        }
+    composable<HomeRoute> {
+        HomeScreen(onCharacterSelected = onCharacterSelected)
     }
 }
