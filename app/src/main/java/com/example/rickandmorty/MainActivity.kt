@@ -128,7 +128,7 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     NavHost(
                         navController = navController,
-                        startDestination = HomeRoute,
+                        startDestination = NavDestination.Home.route,
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         homeScreen(
